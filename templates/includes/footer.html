@@ -20,12 +20,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         						<h3>Follow Me</h3>
         					</div>
         					<p>Let us be social</p>
-        					<ul class="list">
-        						<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-        						<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-        						<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-        						<li><a href="#"><i class="fa fa-behance"></i></a></li>
-        					</ul>
+        					{% for sosyalmedia in sosyalmedias %}
+                                    <li><a href="{{ sosyalmedia.link }}" target="_blank">{{sosyalmedia.icon|safe}}</a></li>
+                            {% endfor %}
         				</aside>
         			</div>
         		</div>

@@ -21,6 +21,8 @@ def index(request):
     educations=Education.objects.all()
 
     experinces=Experince.objects.all()
+
+    sosyalmedias=SosyalMedia.objects.all()
     context={
         'site_title':site_title,
         'site_keywords':site_keywords,
@@ -36,6 +38,7 @@ def index(request):
         'skills':skills,
         'experinces':experinces,
         'educations':educations,
+        'sosyalmedias':sosyalmedias,
 
     }
     return render(request,'index.html',context)
