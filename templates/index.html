@@ -97,42 +97,30 @@
                 <div class="tab-content" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <ul class="list">
+                            {% for experince in experinces %}
+
+
+
                             <li>
                                 <span></span>
                                 <div class="media">
                                     <div class="d-flex">
-                                        <p>March 2017 to present</p>
+                                        <p>{{ experince.start_date |date:"M Y" }}-
+                                            {% if experince.end_date %}
+                                            {{ experince.end_date|date:"M Y" }}
+                                            {% else %}
+                                            Peresent
+                                            {% endif %}
+                                        </p>
                                     </div>
                                     <div class="media-body">
-                                        <h4>Colorlib</h4>
-                                        <p>Senior Web Developer <br/>Santa monica, Los angeles</p>
+                                        <h4>{{ experince.company_name }}</h4>
+                                        <p>{{ experince.job_title }}<br/>{{ experince.job_location }}</p>
                                     </div>
                                 </div>
                             </li>
-                            <li>
-                                <span></span>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <p>March 2017 to present</p>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4>Colorlib</h4>
-                                        <p>Senior Web Developer <br/>Santa monica, Los angeles</p>
-                                    </div>
-                                </div>
-                            </li>
-                            <li>
-                                <span></span>
-                                <div class="media">
-                                    <div class="d-flex">
-                                        <p>March 2017 to present</p>
-                                    </div>
-                                    <div class="media-body">
-                                        <h4>Colorlib</h4>
-                                        <p>Senior Web Developer <br/>Santa monica, Los angeles</p>
-                                    </div>
-                                </div>
-                            </li>
+                            {% endfor %}
+
                         </ul>
                     </div>
                     <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
