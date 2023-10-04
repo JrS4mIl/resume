@@ -18,6 +18,7 @@ def index(request):
     header_image = ImageSetting.objects.get(name='header_image').file
     favicon = ImageSetting.objects.get(name='favicon').file
     skills=Skill.objects.all().order_by('order')
+    educations=Education.objects.all()
 
     experinces=Experince.objects.all()
     context={
@@ -34,6 +35,7 @@ def index(request):
         'favicon':favicon,
         'skills':skills,
         'experinces':experinces,
+        'educations':educations,
 
     }
     return render(request,'index.html',context)
