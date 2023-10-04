@@ -17,6 +17,7 @@ def index(request):
     home_banner_image=ImageSetting.objects.get(name='home_banner_image').file
     header_image = ImageSetting.objects.get(name='header_image').file
     favicon = ImageSetting.objects.get(name='favicon').file
+    skills=Skill.objects.all().order_by('order')
     context={
         'site_title':site_title,
         'site_keywords':site_keywords,
@@ -29,6 +30,7 @@ def index(request):
         'home_banner_image': home_banner_image,
         'header_image':header_image,
         'favicon':favicon,
+        'skills':skills,
 
     }
     return render(request,'index.html',context)
