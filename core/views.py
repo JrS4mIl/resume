@@ -13,6 +13,10 @@ def index(request):
 
     about_myself=GeneralSetting.objects.get(name='about_myself').paramater
     about_footer = GeneralSetting.objects.get(name='about_footer').paramater
+    
+    home_banner_image=ImageSetting.objects.get(name='home_banner_image').file
+    header_image = ImageSetting.objects.get(name='header_image').file
+    favicon = ImageSetting.objects.get(name='favicon').file
     context={
         'site_title':site_title,
         'site_keywords':site_keywords,
@@ -22,6 +26,10 @@ def index(request):
         'home_banner_description':home_banner_description,
         'about_myself':about_myself,
         'about_footer':about_footer,
+        'home_banner_image': home_banner_image,
+        'header_image':header_image,
+        'favicon':favicon,
+
     }
     return render(request,'index.html',context)
 
