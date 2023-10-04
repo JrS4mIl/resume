@@ -8,3 +8,11 @@ class GeneralSetting(models.Model):
     update_date = models.DateTimeField(blank=True, auto_now=True)
     created_date = models.DateTimeField(blank=True, auto_now_add=True)
 
+    def __str__(self):
+        return f'General Setting:{self.name}'
+
+    class Meta:
+        verbose_name = 'General Setting'
+        verbose_name_plural = 'General Settings'
+        ordering = ('name',)
+
