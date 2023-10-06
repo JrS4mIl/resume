@@ -2,23 +2,41 @@ from django.shortcuts import render,redirect,get_object_or_404
 from .models import *
 
 # Create your views here.
+
+def get_general_setting(parameter):
+    try:
+        obj=GeneralSetting.objects.all(name=parameter).parameter
+    except:
+        obj= ''
+    return obj
+
+def get_image_setting(parameter):
+    try:
+        obj=ImageSetting.objects.all(name=parameter).file
+    except:
+        obj= ''
+    return obj
+
+
 def layout(request):
-    documents = Document.objects.all()
-    site_title = GeneralSetting.objects.get(name='site_title').paramater
-    site_keywords = GeneralSetting.objects.get(name='site_keywords').paramater
-    site_description = GeneralSetting.objects.get(name='site_description').paramater
 
-    home_banner_name = GeneralSetting.objects.get(name='home_banner_name').paramater
-    home_banner_title = GeneralSetting.objects.get(name='home_banner_title').paramater
-    home_banner_description = GeneralSetting.objects.get(name='home_banner_description').paramater
+    site_title = get_general_setting('site_title')
+    site_keywords = get_general_setting('site_keywords')
+    site_description = get_general_setting('site_description')
+    about_myself = get_general_setting('about_myself')
+    about_footer = get_general_setting('about_footer')
+    home_banner_name = get_general_setting('home_banner_name')
+    home_banner_title = get_general_setting('home_banner_title')
+    home_banner_description = get_general_setting('home_banner_description')
 
-    about_myself = GeneralSetting.objects.get(name='about_myself').paramater
-    about_footer = GeneralSetting.objects.get(name='about_footer').paramater
 
-    home_banner_image = ImageSetting.objects.get(name='home_banner_image').file
-    header_image = ImageSetting.objects.get(name='header_image').file
-    favicon = ImageSetting.objects.get(name='favicon').file
+
+    home_banner_image = get_image_setting('home_banner_image')
+    header_image = get_image_setting('header_image')
+    favicon = get_image_setting('favicon')
     sosyalmedias = SosyalMedia.objects.all()
+
+    documents = get_general_setting('documents')
     context={
         'documents':documents,
         'site_title': site_title,
