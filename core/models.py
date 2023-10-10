@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator,MaxValueValidator
 # Create your models here.
-
+from resume.custom_storages import DocumentStorage,ImageSettingStorage
 class AbstractModel(models.Model):
     update_date = models.DateTimeField(blank=True, auto_now=True)
     created_date = models.DateTimeField(blank=True, auto_now_add=True)
@@ -24,7 +24,8 @@ class GeneralSetting(AbstractModel):
 class ImageSetting(AbstractModel):
     name=models.CharField(default='',max_length=120,blank=True,verbose_name='Name')
     description = models.CharField(default='', max_length=254, blank=True)
-    file=models.ImageField(default='',verbose_name='Image',blank=True,upload_to='images/')
+
+    file=models.ImageField(default='',verbose_name='Image',blank=True,storage=ImageSettingStorage())
 
     def __str__(self):
         return f'Image Setting:{self.name}'
@@ -94,7 +95,7 @@ class SosyalMedia(AbstractModel):
 class Document(AbstractModel):
     order = models.IntegerField(default='0', verbose_name='Order')
     slug=models.SlugField(default='',max_length=200,verbose_name='Slug')
-    file=models.FileField(default='',verbose_name='Document Name',upload_to='documents/')
+    file=models.FileField(default='',verbose_name='Document Name',upload_to='documents/',storage=DocumentStorage())
     button_text=models.CharField(default='', max_length=120, blank=True, verbose_name='Butoon Text')
 
     def __str__(self):
